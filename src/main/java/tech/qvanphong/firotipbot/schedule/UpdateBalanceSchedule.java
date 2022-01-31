@@ -52,7 +52,7 @@ public class UpdateBalanceSchedule {
              * */
             if (receiveUser != null &&
                     transaction == null &&
-                    confirmations >= 2 &&
+                    confirmations >= 1 &&
                     tx.get("category").equals("receive")) {
                 Double amount = (Double) tx.get("amount");
                 // Create deposit transaction
@@ -79,7 +79,7 @@ public class UpdateBalanceSchedule {
             if (transaction != null &&
                     transaction.getType().equals(Transaction.WITHDRAW_TYPE) &&
                     transaction.getStatus().equals(Transaction.PENDING_STATUS) &&
-                    confirmations >= 2 &&
+                    confirmations >= 1 &&
                     tx.get("category").equals("spend")) {
                 Double amount = (Double) tx.get("amount");
                 User userRequested = userService.getUserById(transaction.getUserId()).block();
