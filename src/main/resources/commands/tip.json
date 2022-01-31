@@ -1,0 +1,25 @@
+{
+  "name": "tip",
+  "description": "Tipping to other user",
+  "options": [
+    {
+      "name": "user",
+      "description": "User that you want to tip",
+      "required": true,
+      "type": 6
+    },
+    {
+      "name": "amount",
+      "description": "Amount of tipping (0.001 ~ 10 FIRO)",
+      "required": true,
+      "type": 10,
+      "min_value": 0.001,
+      "max_value": 10
+    },
+    {
+      "name": "message",
+      "description": "Message",
+      "type": 3
+    }
+  ]
+}

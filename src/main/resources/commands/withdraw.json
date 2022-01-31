@@ -1,0 +1,19 @@
+{
+  "name": "withdraw",
+  "description": "Withdraw to your wallet.",
+  "options": [
+    {
+      "name": "address",
+      "description": "Your wallet address",
+      "required": true,
+      "type": 3
+    },
+    {
+      "name": "amount",
+      "description": "Amount of tipping (0.001 ~ 10 FIRO)",
+      "required": true,
+      "type": 10,
+      "min_value": 0.001
+    }
+  ]
+}

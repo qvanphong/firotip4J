@@ -1,0 +1,21 @@
+{
+  "name": "rain",
+  "description": "Giving specific amount to random users",
+  "options": [
+    {
+      "name": "amount",
+      "description": "Total amount want to rain",
+      "required": true,
+      "type": 10,
+      "max_value": 10
+    },
+    {
+      "name": "users_to_rain_on",
+      "description": "Amount of user receive rain",
+      "required": true,
+      "type": 4,
+      "min_value": 1,
+      "max_value": 10
+    }
+  ]
+}

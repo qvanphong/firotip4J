@@ -1,0 +1,48 @@
+plugins {
+    id 'java'
+
+
+    //Spring plugin
+    id("org.springframework.boot") version ("2.6.2")
+    //Lombok plugin
+    id "io.freefair.lombok" version "6.3.0"
+}
+
+group 'tech.qvanphong.firotipbot'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+
+    // https://mvnrepository.com/artifact/com.discord4j/discord4j-core
+    implementation group: 'com.discord4j', name: 'discord4j-core', version: '3.2.1'
+    implementation("org.springframework.boot:spring-boot-starter-web:2.6.2")
+    implementation('com.squareup.okhttp3:okhttp:4.9.3')
+    // https://mvnrepository.com/artifact/wf.bitcoin/bitcoin-rpc-client
+    implementation 'wf.bitcoin:bitcoin-rpc-client:1.2.4'
+    // https://mvnrepository.com/artifact/com.google.code.gson/gson
+    implementation 'com.google.code.gson:gson:2.8.9'
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-configuration-processor
+    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor:2.6.2"
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-mongodb
+    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb:2.6.2'
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-mongodb-reactive
+    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb-reactive:2.6.2'
+    // https://mvnrepository.com/artifact/com.google.zxing/core
+    implementation 'com.google.zxing:core:3.4.1'
+    // https://mvnrepository.com/artifact/com.google.zxing/javase
+    implementation 'com.google.zxing:javase:3.4.1'
+
+
+    compileOnly 'org.projectlombok:lombok:1.18.22'
+
+}
+
+test {
+    useJUnitPlatform()
+}
