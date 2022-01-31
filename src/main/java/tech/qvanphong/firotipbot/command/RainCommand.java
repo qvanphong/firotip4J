@@ -65,10 +65,7 @@ public class RainCommand implements SlashCommand {
                     }
 
                     // Update balance of user that using rain.
-                    userRaining.setBalance(userRaining.getBalance().subtract(BigDecimal.valueOf(amount)));
-                    return userService.saveUser(userRaining)
-                            .then(event.getInteraction().getChannel())
-
+                    return event.getInteraction().getChannel()
                             // Getting 100 latest message
                             .flatMap(messageChannel -> messageChannel.getMessagesBefore(Snowflake.of(Instant.now()))
                                     .take(100)
@@ -87,7 +84,7 @@ public class RainCommand implements SlashCommand {
                                     selectedUsers = selectedUsers.subList(0, (int) usersToRainOn);
                                 }
 
-                                eachUserReceive.set(BigDecimal.valueOf(amount).divide(BigDecimal.valueOf(selectedUsers.size()),2, RoundingMode.FLOOR));
+                                eachUserReceive.set(BigDecimal.valueOf(amount).divide(BigDecimal.valueOf(selectedUsers.size()), 2, RoundingMode.FLOOR));
 
                                 return Flux.just(selectedUsers.toArray(new User[0]));
                             })
@@ -102,7 +99,9 @@ public class RainCommand implements SlashCommand {
                                 return userService.getOrCreateUser(user.getId().asString())
                                         .flatMap(winnerFromDb -> {
                                             winnerFromDb.setBalance(winnerFromDb.getBalance().add(eachUserReceive.get()));
-                                            return userService.saveUser(winnerFromDb);
+                                            userRaining.setBalance(userRaining.getBalance().subtract(eachUserReceive.get()));
+
+                                            return userService.saveUser(userRaining).then(userService.saveUser(winnerFromDb));
                                         });
                             })
                             .then(rainService.saveRainLog(userId, amount, winners))
