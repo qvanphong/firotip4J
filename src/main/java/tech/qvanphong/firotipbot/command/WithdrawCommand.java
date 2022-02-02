@@ -42,7 +42,7 @@ public class WithdrawCommand implements SlashCommand {
         return event.deferReply()
                 .then(userService.getOrCreateUser(userId))
                 .flatMap(user -> {
-                    if (user.getBalance().compareTo(BigDecimal.valueOf(amount)) < 1) {
+                    if (user.getBalance().compareTo(BigDecimal.valueOf(amount)) < 0) {
                         return messageSourceSender.sendPrivateAndUpdateReply(event, "error.excess_amount", null);
                     }
 
